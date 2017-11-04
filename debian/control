@@ -1,0 +1,17 @@
+Source: stsbl-iserv-server-radvd
+Section: misc
+Priority: extra
+Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.8
+
+Package: stsbl-iserv-server-radvd
+Architecture: all
+Depends: ${misc:Depends},
+  ${perl:Depends},
+  iserv-config-file,
+  radvd,
+  stsbl-iserv-config-ipv6,
+Description: IServ Radvd Server
+ Provides radvd configuration to advertise routes to LAN and internet.
+Tag: suite::iserv
