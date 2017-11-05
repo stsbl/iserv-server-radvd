@@ -16,13 +16,7 @@ do
   echo "  MinRtrAdvInterval 3;"
   echo "  MaxRtrAdvInterval 10;"
   echo
-  for h in $(netquery6 --global --format "nic prefix/length" | grep -v $i | awk '{ print $2 }')
-  do
-    echo "  route $h {"
-    echo "  };"
-    echo
-  done
-  # advert all routes from routing table
+  # advert all routes from routing table except the one on own interface
   for h in $(ip -6 route | grep -vE "(dev $i|^default|^local|^fe80)" | awk '{ print $1 }')
   do
     # append prefix 128 if none given
