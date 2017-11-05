@@ -12,6 +12,6 @@ Depends: ${misc:Depends},
   iserv-config-file,
   radvd,
   stsbl-iserv-config-ipv6,
-Description: IServ Radvd Server
+Description: IServ Server Radvd
  Provides radvd configuration to advertise routes to LAN and internet.
 Tag: suite::iserv
