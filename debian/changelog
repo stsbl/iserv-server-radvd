@@ -3,7 +3,7 @@ stsbl-iserv-server-radvd (17.11.05-1) experimental; urgency=medium
   * Updated copyright
   * Updated package description
   * Advertise complete routing table on non-lan interfaces
-  * Removed old code for route advertisments on wan interfaces
+  * Removed old code for route advertisements on wan interfaces
 
  -- Felix Jacobi <felix.jacobi@stsbl.de>  Sun, 05 Nov 2017 03:17:03 +0100
 
