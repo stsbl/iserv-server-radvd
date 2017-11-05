@@ -20,6 +20,22 @@ do
   do
     echo "  route $h {"
     echo "  };"
+    echo
+  done
+  # advert all routes from routing table
+  for h in $(ip -6 route | grep -vE "(dev $i|^default|^local|^fe80)" | awk '{ print $1 }')
+  do
+    # append prefix 128 if none given
+    # default to /128 prefix
+    suffix=""
+    if ! echo $h | grep -q "/"
+    then
+      suffix="/128"
+    fi
+
+    echo "  route $h$suffix {"
+    echo "  };"
+    echo
   done
   echo "};"
   echo
