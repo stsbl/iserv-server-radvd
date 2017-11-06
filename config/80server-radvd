@@ -1,0 +1,8 @@
+AdverstiseNAT64:
+name            Adverstise NAT64 address range on default interface
+description     Select if NAT64 range should be advertised on default and internet interfaces. Normally that is not neccessary. 
+type            bool
+default         false
+readonly        true
+group           Module: Radvd server
+

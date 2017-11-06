@@ -1,0 +1,13 @@
+msgid "Adverstise NAT64 address range on default interface"
+msgstr "NAT64 Adressbereich auf Standardschnittstelle ankündigen"
+
+msgid ""
+"Select if NAT64 range should be advertised on default and internet "
+"interfaces. Normally that is not neccessary."
+msgstr ""
+"Wählen Sie, ob der NAT64-Adressbereich auf den Standard- und "
+"Internetschnittstellen angekündigt werden soll. Dies ist "
+"nromalerweise nicht nötig."
+
+msgid "Module: Radvd server"
+msgstr "Modul: Radvd-Server"
