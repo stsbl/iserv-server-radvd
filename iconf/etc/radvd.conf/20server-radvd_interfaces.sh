@@ -19,6 +19,9 @@ do
   # advert all routes from routing table except the one on own interface
   for h in $(ip -6 route | grep -vE "(dev $i|^default|^local|^fe80)" | awk '{ print $1 }')
   do
+    # make advertise to nat64 prefix on lan interface switchable
+    [ "$h" = "64:ff9b::/96" ] && [ $AdvertiseNAT64 ] || continue
+
     # append prefix 128 if none given
     # default to /128 prefix
     suffix=""
