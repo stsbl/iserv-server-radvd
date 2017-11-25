@@ -60,7 +60,7 @@ then
     do
       echo "  prefix $h {"
       echo "    AdvOnLink on;"
-      echo "    AdvAutonomous $(if [ "$UseDHCPv6" ]; then echo "off"; else echo "on"; fi);"
+      echo "    AdvAutonomous on;"
       echo "    AdvRouterAddr on;"
       echo "  };"
       echo
