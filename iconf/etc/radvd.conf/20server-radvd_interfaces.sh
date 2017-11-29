@@ -64,9 +64,13 @@ then
       echo "    AdvRouterAddr on;"
       echo "  };"
       echo
-      echo "  RDNSS $(netquery6 --global --lan --format "nic ip" | grep -E "^$i\s" | awk '{ print $2 }') {"
+    done
+    for d in $( (netquery6 --global --lan --format "nic ip"; netquery6 --uniquelocal --lan --format "nic ip") | grep -E "^$i\s" | awk '{ print $2 }')
+    do
+      echo "  RDNSS $d {"
       echo "    AdvRDNSSLifetime 300;"
       echo "  };"
+      echo
     done
     echo "};"
     echo
