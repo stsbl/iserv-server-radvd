@@ -1,0 +1,10 @@
+@def $UniqueLocalAddresses = `netquery6 -p -f ip | tr "\n" " "`;
+
+domain (ip6) {
+  table filter {
+    chain INPUT {
+      proto ipv6-icmp icmpv6-type 134 saddr @ipfilter($UniqueLocalAddresses) jump DROP;
+    }
+  }
+}
+
