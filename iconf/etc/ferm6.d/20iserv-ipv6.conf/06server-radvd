@@ -2,7 +2,7 @@
 
 domain (ip6) {
   table filter {
-    chain INPUT {
+    chain input_first {
       proto ipv6-icmp icmpv6-type 134 saddr @ipfilter($UniqueLocalAddresses) jump DROP;
     }
   }
