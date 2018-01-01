@@ -1,3 +1,12 @@
+stsbl-iserv-server-radvd (18.01.01-1) experimental; urgency=medium
+
+  * Added license
+  * Added firewall rule to block our own router advertisements
+  * Moved icmpv6 rule to input_first
+  * Updated copyright
+
+ -- Felix Jacobi <felix.jacobi@stsbl.de>  Mon, 01 Jan 2018 20:39:25 +0100
+
 stsbl-iserv-server-radvd (17.11.29-1) experimental; urgency=medium
 
   * Fixes handling of multiple ipv6 addresses and prefixes
