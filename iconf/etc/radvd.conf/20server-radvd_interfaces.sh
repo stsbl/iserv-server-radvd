@@ -56,11 +56,20 @@ then
     echo "  MinRtrAdvInterval 3;"
     echo "  MaxRtrAdvInterval 10;"
     echo
-    for h in $(netquery6 --global --lan --format "nic prefix/length" | uniq | grep -E "^$i\s" | awk '{ print $2 }')
+    for h in $(netquery6 -gl -f "nic prefix/length" | uniq | grep -E "^$i\s" | awk '{ print $2 }')
     do
       echo "  prefix $h {"
       echo "    AdvOnLink on;"
       echo "    AdvAutonomous on;"
+      echo "    AdvRouterAddr on;"
+      echo "  };"
+      echo
+    done
+    for h in $(netquery6 -ul -f "nic prefix/length" | uniq | grep -E "^$i\s" | awk '{ print $2 }')
+    do
+      echo "  prefix $h {"
+      echo "    AdvOnLink on;"
+      echo "    AdvAutonomous off;"
       echo "    AdvRouterAddr on;"
       echo "  };"
       echo
