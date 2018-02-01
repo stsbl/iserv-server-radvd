@@ -10,10 +10,10 @@ Architecture: all
 Depends: ${misc:Depends},
   ${perl:Depends},
   iserv-config-file,
+  iserv-server-ferm (>= 18.02.01),
   iserv-update,
   radvd,
   stsbl-iserv-config-ipv6,
-  stsbl-iserv-server-radvd,
 Description: IServ Server Radvd
  Provides radvd configuration to advertise routes to LAN and internet.
 Tag: suite::iserv
