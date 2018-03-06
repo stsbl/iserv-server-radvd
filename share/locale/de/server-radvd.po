@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Wählen Sie, ob der NAT64-Adressbereich auf den Standard- und "
 "Internetschnittstellen angekündigt werden soll. Dies ist "
-"nromalerweise nicht nötig."
+"normalerweise nicht nötig."
 
 msgid "Module: Radvd server"
 msgstr "Modul: Radvd-Server"
