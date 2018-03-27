@@ -3,7 +3,8 @@ Section: misc
 Priority: extra
 Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
 Build-Depends: debhelper (>= 10)
-Standards-Version: 3.9.8
+Build-Depends-Indep: iserv3-dev
+Standards-Version: 4.1.3.0
 
 Package: stsbl-iserv-server-radvd
 Architecture: all
@@ -14,6 +15,7 @@ Depends: ${misc:Depends},
   iserv-update,
   radvd,
   stsbl-iserv-config-ipv6,
+Xb-Private-IServ-Revision: ${iserv:Revision}
 Description: IServ Server Radvd
  Provides radvd configuration to advertise routes to LAN and internet.
 Tag: suite::iserv
