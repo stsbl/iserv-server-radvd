@@ -41,7 +41,12 @@ do
   echo
 done
 
-IFs="$( (netquery6 --global --format nic --lan; netquery6 --uniquelocal --format nic --lan) )"
+# GNU uniq seems to handle input from two commands stupid
+perl_uniq() {
+  perl -e 'print sort keys %{{ map { $_ => 1 } <STDIN> }};'
+}
+
+IFs="$( (netquery6 --global --format nic --lan; netquery6 --uniquelocal --format nic --lan) | perl_uniq )"
 
 if [[ $(echo $IFs | wc -l) -gt 0 ]]
 then
@@ -79,7 +84,7 @@ then
     for d in $( (netquery6 --global --lan --format "nic ip"; netquery6 --uniquelocal --lan --format "nic ip") | grep -E "^$i\s" | awk '{ print $2 }')
     do
       echo "  RDNSS $d {"
-      echo "    AdvRDNSSLifetime 300;"
+      echo "    AdvRDNSSLifetime 2;"
       echo "  };"
       echo
     done
