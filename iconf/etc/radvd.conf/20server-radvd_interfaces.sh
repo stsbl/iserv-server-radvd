@@ -41,9 +41,11 @@ do
   echo
 done
 
-if [[ $(netquery6 --global --format nic --lan | uniq | wc -l) -gt 0 ]]
+IFs="$( (netquery6 --global --format nic --lan; netquery6 --uniquelocal --format nic --lan) )"
+
+if [[ $(echo $IFs | wc -l) -gt 0 ]]
 then
-  for i in $(netquery6 --global --format nic --lan | uniq)
+  for i in $IFs
   do
     # do not advert on default interface
     [ "$i" = "$DEFIF" ] && continue
