@@ -1,3 +1,10 @@
+stsbl-iserv-server-radvd (18.04.15-1) experimental; urgency=medium
+
+  * Added support for NAT66 with unique local ipv6 addresses
+  * Replaced uniq by perl oneliner
+
+ -- Felix Jacobi <felix.jacobi@stsbl.de>  Sun, 15 Apr 2018 16:22:49 +0200
+
 stsbl-iserv-server-radvd (18.04.10-1) experimental; urgency=medium
 
   * Adapted package for native IServ IPv6 support
