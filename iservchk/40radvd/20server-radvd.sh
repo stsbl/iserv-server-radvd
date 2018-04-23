@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check if we have routes to announce
-if [ "$( (netquery6 --global --lan --format nic; netquery6 --uniquelocal --lan --format ) | uniq | wc -l)" -gt 0 ]
+if [ "$( (netquery6 --global --lan --format nic; netquery6 --uniquelocal --lan --format nic) | uniq | wc -l)" -gt 0 ]
 then
   echo "Check /etc/radvd.conf"
   echo "Start radvd"
