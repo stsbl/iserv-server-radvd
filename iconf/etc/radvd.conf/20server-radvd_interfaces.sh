@@ -68,7 +68,9 @@ then
       echo "  prefix $h {"
       echo "    AdvOnLink on;"
       echo "    AdvAutonomous on;"
-      echo "    AdvRouterAddr on;"
+      # only adveriste route address if server it self has a default route
+      echo -n "    AdvRouterAddr "
+      if [ ! -z "$DEFIF" ]; then echo "on;"; else echo "off;"; fi      
       echo "  };"
       echo
     done
@@ -77,7 +79,9 @@ then
       echo "  prefix $h {"
       echo "    AdvOnLink on;"
       echo "    AdvAutonomous off;"
-      echo "    AdvRouterAddr on;"
+      # only adveriste route address if server it self has a default route
+      echo -n "    AdvRouterAddr "
+      if [ ! -z "$DEFIF" ]; then echo "on;"; else echo "off;"; fi
       echo "  };"
       echo
     done
