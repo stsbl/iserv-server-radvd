@@ -2,12 +2,17 @@
 
 . /usr/lib/iserv/cfg
 
+# GNU uniq seems to handle input from two commands stupid
+perl_uniq() {
+  perl -e 'print sort keys %{{ map { $_ => 1 } <STDIN> }};'
+}
+
 # Determine internet interface
 DEFIF="$(LC_ALL=C ip -6 route show default | awk '$1=="default" {print $5}' | 
   sed 's/^ppp[0-9]\+/ppp+/')"
 
 # advert lan routes on all wan interfaces + default interfaces
-for i in $( (netquery6 --global --wan --format nic; netquery6 --global --format nic | grep "$DEFIF") | uniq)
+[ -z "$DEFIF" ] || (for i in $( (netquery6 --global --wan --format nic; netquery6 --global --format nic | grep "$DEFIF") | perl_uniq)
 do
   echo "interface $i {"
   echo "  AdvSendAdvert on;"
@@ -39,12 +44,7 @@ do
   done
   echo "};"
   echo
-done
-
-# GNU uniq seems to handle input from two commands stupid
-perl_uniq() {
-  perl -e 'print sort keys %{{ map { $_ => 1 } <STDIN> }};'
-}
+done)
 
 IFs="$( (netquery6 --global --format nic --lan; netquery6 --uniquelocal --format nic --lan) | perl_uniq )"
 
