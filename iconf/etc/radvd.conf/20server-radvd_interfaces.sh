@@ -88,7 +88,7 @@ then
     for d in $( (netquery6 --global --lan --format "nic ip"; netquery6 --uniquelocal --lan --format "nic ip") | grep -E "^$i\s" | awk '{ print $2 }')
     do
       echo "  RDNSS $d {"
-      echo "    AdvRDNSSLifetime 2;"
+      echo "    AdvRDNSSLifetime 10;"
       echo "  };"
       echo
     done
