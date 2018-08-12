@@ -1,3 +1,10 @@
+stsbl-iserv-server-radvd (18.08.12-1) experimental; urgency=medium
+
+  * Improved config generation on empty default interface
+  * Improved AdvRDNSSLifetime config
+
+ -- Felix Jacobi <felix.jacobi@stsbl.de>  Sun, 12 Aug 2018 15:31:52 +0200
+
 stsbl-iserv-server-radvd (18.05.27-1) experimental; urgency=medium
 
   * Fixed iservchk script
