@@ -1,3 +1,11 @@
+stsbl-iserv-server-radvd (18.11.30-1) experimental; urgency=medium
+
+  * Updated build rules for webpack support
+  * radvd.conf: Migrated iconf templates to -i parameter of netquery6
+  * Also filter own icmp type 133 messages (Router solicitation)
+
+ -- Felix Jacobi <felix.jacobi@stsbl.de>  Fri, 30 Nov 2018 00:58:47 +0100
+
 stsbl-iserv-server-radvd (18.08.12-1) experimental; urgency=medium
 
   * Improved config generation on empty default interface
