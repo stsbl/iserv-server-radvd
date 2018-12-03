@@ -65,6 +65,8 @@ then
     echo "  MinRtrAdvInterval 3;"
     echo "  MaxRtrAdvInterval 10;"
     echo
+    echo "  AdvLinkMTU 1492;"
+    echo
     for h in $(netquery6 -gl -f "prefix/length" -i "$i" | uniq)
     do
       echo "  prefix $h {"
