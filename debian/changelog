@@ -1,3 +1,9 @@
+stsbl-iserv-server-radvd (18.12.16-1) experimental; urgency=medium
+
+  * ferm: Fixed accidential dropping of foreign route advertisements
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 16 Dec 2018 04:16:12 +0100
+
 stsbl-iserv-server-radvd (18.12.03-1) experimental; urgency=medium
 
   * radvd.conf: Added MTU flag and set it to 1492 (like in DHCPv4 in portal)
