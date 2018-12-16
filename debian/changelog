@@ -1,3 +1,9 @@
+stsbl-iserv-server-radvd (18.12.16-3) experimental; urgency=medium
+
+  * ferm: Fixed rule generation and moved rules to proper chains
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 16 Dec 2018 06:05:44 +0100
+
 stsbl-iserv-server-radvd (18.12.16-2) experimental; urgency=medium
 
   * Fixed changelog
