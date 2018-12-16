@@ -1,6 +1,12 @@
+stsbl-iserv-server-radvd (18.12.16-2) experimental; urgency=medium
+
+  * Fixed changelog
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 16 Dec 2018 04:17:32 +0100
+
 stsbl-iserv-server-radvd (18.12.16-1) experimental; urgency=medium
 
-  * ferm: Fixed accidential dropping of foreign route advertisements
+  * ferm: Fixed accidental dropping of foreign route advertisements
 
  -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 16 Dec 2018 04:16:12 +0100
 
