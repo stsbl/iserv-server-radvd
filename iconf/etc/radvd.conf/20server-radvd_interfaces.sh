@@ -12,9 +12,9 @@ DEFIF="$(LC_ALL=C ip -6 route show default | awk '$1=="default" {print $5}' |
   sed 's/^ppp[0-9]\+/ppp+/')"
 
 # advert lan routes on all wan interfaces + default interfaces
-[ -z "$DEFIF" ] || (for i in $( (netquery6 --global --wan --format nic \
+[ -z "$DEFIF" ] || (for i in $( (netquery6 --global --uniquelocal --wan --format nic \
     --interface "$DEFIF"; \
-    netquery6 --global --format nic --interface "$DEFIF") | perl_uniq)
+    netquery6 --global --uniquelocal --format nic --interface "$DEFIF") | perl_uniq)
 do
   echo "interface $i {"
   echo "  AdvSendAdvert on;"
