@@ -1,3 +1,10 @@
+stsbl-iserv-server-radvd (19.01.13-1) experimental; urgency=medium
+
+  * Fixed advertising of routes if only unique local address are assigned to
+    default interface
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 13 Jan 2019 00:44:38 +0100
+
 stsbl-iserv-server-radvd (18.12.16-3) experimental; urgency=medium
 
   * ferm: Fixed rule generation and moved rules to proper chains
