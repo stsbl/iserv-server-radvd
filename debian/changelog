@@ -1,3 +1,10 @@
+stsbl-iserv-server-radvd (19.01.27-1) experimental; urgency=medium
+
+  * Fixed calculating of DEFIF and added workaround for Android which wrongly
+    determines the prefix announcements as default route
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 27 Jan 2019 22:09:11 +0100
+
 stsbl-iserv-server-radvd (19.01.13-1) experimental; urgency=medium
 
   * Fixed advertising of routes if only unique local address are assigned to
