@@ -4,8 +4,8 @@
 if [ "$( (netquery6 --global --lan --format nic; netquery6 --uniquelocal --lan --format nic) | uniq | wc -l)" -gt 0 ]
 then
   echo "Check /etc/radvd.conf"
-  echo "Start radvd"
+  echo "Start radvd radvd"
 else
   echo "Remove /etc/radvd.conf"
-  echo "Stop radvd"
+  echo "Stop radvd radvd"
 fi
