@@ -9,7 +9,7 @@ perl_uniq() {
 
 # Determine internet interface
 DEFIF="$(LC_ALL=C ip -6 route show default | awk '$1=="default" {print $5}' | 
-  sed 's/^ppp[0-9]\+/ppp+/')"
+  sed 's/^ppp[0-9]\+/ppp+/' | sort | uniq)"
 
 # advert lan routes on all wan interfaces + default interfaces
 [ -z "$DEFIF" ] || (for i in $( (netquery6 --global --uniquelocal --wan --format nic \
@@ -19,6 +19,9 @@ do
   echo "interface $i {"
   echo "  AdvSendAdvert on;"
   echo "  AdvDefaultLifetime 0;"
+  echo "  # Workaround for Android devices which determines the prefix"
+  echo "  # advertisements as default route"
+  echo "  AdvDefaultPreference low;"
   echo
   echo "  MinRtrAdvInterval 3;"
   echo "  MaxRtrAdvInterval 10;"
