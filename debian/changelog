@@ -1,3 +1,11 @@
+stsbl-iserv-server-radvd (19.05.09-1) experimental; urgency=medium
+
+  * Updated source format
+  * Moved filtering of own route advertisements from filter to raw as this the
+    only reliable place to catch packages from own hosts
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Thu, 09 May 2019 06:08:43 +0200
+
 stsbl-iserv-server-radvd (19.01.27-2) experimental; urgency=medium
 
   * iservchk: Added process name to {Start,Stop}
