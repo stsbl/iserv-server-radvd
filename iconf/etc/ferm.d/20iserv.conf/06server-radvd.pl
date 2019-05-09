@@ -4,8 +4,8 @@ use warnings;
 use strict;
 
 print "domain (ip6) {\n";
-print "  table filter {\n";
-print "    chain input_linklocal {\n";
+print "  table raw {\n";
+print "    chain prerouting_linklocal {\n";
 print "      # Prevent reading of our own route advertisements by dump daemons like rdnssd\n";
 for (split /\n/, qx(netquery6 -p -f "ip\tnic"))
 {
