@@ -1,3 +1,10 @@
+stsbl-iserv-server-radvd (19.08.08-1) experimental; urgency=medium
+
+  * Fixed typo in comment
+  * Fixed radvd.conf for buster
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Thu, 08 Aug 2019 03:54:09 +0200
+
 stsbl-iserv-server-radvd (19.05.09-1) experimental; urgency=medium
 
   * Updated source format
