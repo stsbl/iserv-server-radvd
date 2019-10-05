@@ -14,7 +14,7 @@ Depends: ${misc:Depends},
   iserv-server-ferm (>= 18.04.10),
   iserv-update,
   radvd,
-  stsbl-iserv-config-ipv6 (>= 19.05.09),
+  stsbl-iserv-config-ipv6 (>= 19.10.06),
 Xb-Private-IServ-Revision: ${iserv:Revision}
 Description: IServ Server Radvd
  Provides radvd configuration to advertise routes to LAN and internet.

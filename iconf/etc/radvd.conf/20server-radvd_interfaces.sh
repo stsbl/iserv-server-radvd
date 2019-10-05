@@ -2,19 +2,11 @@
 
 . /usr/lib/iserv/cfg
 
-# GNU uniq seems to handle input from two commands stupid
-perl_uniq() {
-  perl -e 'print sort keys %{{ map { $_ => 1 } <STDIN> }};'
-}
-
 # Determine internet interface
-DEFIF="$(LC_ALL=C ip -6 route show default | awk '$1=="default" {print $5}' | 
-  sed 's/^ppp[0-9]\+/ppp+/' | sort | uniq)"
+DEFIF="$(. /usr/lib/iserv/ipv6_defif)"
 
 # advert lan routes on all wan interfaces + default interfaces
-[ -z "$DEFIF" ] || (for i in $( (netquery6 --global --uniquelocal --wan --format nic \
-    --interface "$DEFIF"; \
-    netquery6 --global --uniquelocal --format nic --interface "$DEFIF") | perl_uniq)
+[ -z "$DEFIF" ] || (for i in $(netquery6 -i "$DEFIF" -ug nic | sort | uniq)
 do
   echo "interface $i {"
   echo "  AdvSendAdvert on;"
@@ -51,7 +43,7 @@ do
   echo
 done)
 
-IFs=($( (netquery6 --global --format nic --lan; netquery6 --uniquelocal --format nic --lan) | perl_uniq ))
+IFs=($(netquery6 -gul nic | sort | uniq))
 
 if [[ ${#IFs[@]} -gt 0 ]]
 then
@@ -70,7 +62,7 @@ then
     echo
     echo "  AdvLinkMTU 1492;"
     echo
-    for h in $(netquery6 -gl -f "prefix/length" -i "$i" | uniq)
+    for h in $(netquery6 -i "$i" -gl "prefix/length" | sort | uniq)
     do
       echo "  prefix $h {"
       echo "    AdvOnLink on;"
@@ -82,7 +74,7 @@ then
       echo "  };"
       echo
     done
-    for h in $(netquery6 -ul -f "prefix/length" -i "$i" | uniq)
+    for h in $(netquery6 -ul -i "$i" prefix/length | sort | uniq)
     do
       echo "  prefix $h {"
       echo "    AdvOnLink on;"
@@ -93,8 +85,7 @@ then
       echo "  };"
       echo
     done
-    for d in $( (netquery6 --global --lan --format "ip" --interface "$i"; \
-        netquery6 --uniquelocal --lan --format "ip" --interface "$i") )
+    for d in $(netquery6 -gul -i "$i" ip)
     do
       echo "  RDNSS $d {"
       echo "    AdvRDNSSLifetime 10;"
