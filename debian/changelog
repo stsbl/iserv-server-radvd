@@ -1,3 +1,12 @@
+stsbl-iserv-server-radvd (19.10.13-1) testing; urgency=medium
+
+  * Bumped copyright
+  * Various: Improved netquery6 usage
+  * Radvd.conf: Unified configuration for global and unique local
+    addresses, made configuration more static
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sun, 13 Oct 2019 18:16:41 +0200
+
 stsbl-iserv-server-radvd (19.08.08-1) experimental; urgency=medium
 
   * Fixed typo in comment
