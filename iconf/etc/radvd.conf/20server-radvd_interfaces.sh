@@ -86,8 +86,7 @@ EOT
     # Minimum allowed lifetime (2h) according to RFC 4862, Section 5.5.3 plus
     # 30 seconds
     AdvValidLifetime 7230;
-    # AdvValidLifetime / 2
-    AdvPreferredLifetime 3615;
+    AdvPreferredLifetime 60;
   };
 
 EOT
