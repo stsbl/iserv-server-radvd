@@ -51,46 +51,55 @@ then
   do
     # do not advert on default interface
     [ "$i" = "$DEFIF" ] && continue
-    echo "interface $i {"
-    echo "  AdvSendAdvert on;"
-    echo
-    echo "  AdvManagedFlag $(if [ $UseDHCPv6 ]; then echo "on"; else echo "off"; fi);"
-    echo "  AdvOtherConfigFlag $(if [ $UseDHCPv6 ]; then echo "on"; else echo "off"; fi);"
-    echo
-    echo "  MinRtrAdvInterval 3;"
-    echo "  MaxRtrAdvInterval 10;"
-    echo
-    echo "  AdvLinkMTU 1492;"
-    echo
-    for h in $(netquery6 -i "$i" -gl "prefix/length" | sort | uniq)
-    do
-      echo "  prefix $h {"
-      echo "    AdvOnLink on;"
-      echo "    AdvAutonomous on;"
-      echo "    DeprecatePrefix on;"
-      # only adveriste route address if server it self has a default route
-      echo -n "    AdvRouterAddr "
-      if [ ! -z "$DEFIF" ]; then echo "on;"; else echo "off;"; fi      
-      echo "  };"
-      echo
-    done
-    for h in $(netquery6 -ul -i "$i" prefix/length | sort | uniq)
-    do
-      echo "  prefix $h {"
-      echo "    AdvOnLink on;"
-      echo "    AdvAutonomous off;"
-      # only adveriste route address if server it self has a default route
-      echo -n "    AdvRouterAddr "
-      if [ ! -z "$DEFIF" ]; then echo "on;"; else echo "off;"; fi
-      echo "  };"
-      echo
-    done
+    cat <<EOT
+interface $i {
+  AdvSendAdvert on;
+
+  AdvManagedFlag on;
+  AdvOtherConfigFlag on;
+
+  MinRtrAdvInterval 3;
+  MaxRtrAdvInterval 10;
+
+  AdvLinkMTU 1492;
+
+EOT
+    if netquery6 -i "$i" -gulq
+    then
+      cat <<EOT
+  # Note: This causes the warning "invalid all-zeros prefix in /etc/radvd.conf"
+  # which can be safetly ignored due to false positive:
+  # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891324
+  prefix ::/64 {
+    AdvOnLink on;
+    AdvAutonomous on;
+    DeprecatePrefix on;
+    # Not supported here
+    #AdvRouterAddr $(
+      if [ -n "$DEFIF" ]
+      then
+        echo -n "on"
+      else
+        echo -n "off"
+      fi);
+
+    # Minimum allowed lifetime (2h) according to RFC 4862, Section 5.5.3 plus
+    # 30 seconds
+    AdvValidLifetime 7230;
+    # AdvValidLifetime / 2
+    AdvPreferredLifetime 3615;
+  };
+
+EOT
+    fi
     for d in $(netquery6 -gul -i "$i" ip)
     do
-      echo "  RDNSS $d {"
-      echo "    AdvRDNSSLifetime 10;"
-      echo "  };"
-      echo
+      cat <<EOT
+  RDNSS $d {
+    AdvRDNSSLifetime 10;
+  };
+
+EOT
     done
     echo "};"
     echo
