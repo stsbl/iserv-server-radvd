@@ -11,9 +11,6 @@ do
   echo "interface $i {"
   echo "  AdvSendAdvert on;"
   echo "  AdvDefaultLifetime 0;"
-  echo "  # Workaround for Android devices which determines the prefix"
-  echo "  # advertisements as default route"
-  echo "  AdvDefaultPreference low;"
   echo
   echo "  MinRtrAdvInterval 3;"
   echo "  MaxRtrAdvInterval 10;"
@@ -36,6 +33,8 @@ do
     fi
 
     echo "  route $h$suffix {"
+    echo "    RemoveRoute on;"
+    echo "    AdvRouteLifetime 60;"
     echo "  };"
     echo
   done
