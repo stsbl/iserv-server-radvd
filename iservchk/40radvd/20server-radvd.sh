@@ -4,8 +4,9 @@
 if [ "$(netquery6 -gul nic | sort | uniq | wc -l)" -gt 0 ]
 then
   echo "Check /etc/radvd.conf"
-  echo "Start radvd radvd"
+  echo "Reload radvd radvd"
 else
   echo "Remove /etc/radvd.conf"
   echo "Stop radvd radvd"
 fi
+echo
