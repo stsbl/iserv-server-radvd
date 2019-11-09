@@ -16,7 +16,7 @@ do
   echo "  MaxRtrAdvInterval 10;"
   echo
   # advert all routes from routing table except the one on own interface
-  for h in $(ip -6 route | grep -vE "(dev $i |dev lo |^default|^local|^fe80)" | awk '{ print $1 }')
+  for h in $(ip -6 route | grep -vE "(^none |dev $i |dev lo |^default|^local|^fe80)" | awk '{ print $1 }')
   do
     # make advertise to nat64 prefix on lan interface switchable
     if [ "$h" = "64:ff9b::/96" ]
