@@ -89,8 +89,8 @@ EOT
   };
 
 EOT
+      echo "};"
+      echo
     fi
   done
-  echo "};"
-  echo
 fi
