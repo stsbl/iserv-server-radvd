@@ -90,16 +90,7 @@ EOT
 
 EOT
     fi
-    for d in $(netquery6 -gul -i "$i" ip)
-    do
-      cat <<EOT
-  RDNSS $d {
-    AdvRDNSSLifetime 10;
-  };
-
-EOT
-    done
-    echo "};"
-    echo
   done
+  echo "};"
+  echo
 fi

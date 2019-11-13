@@ -15,6 +15,7 @@ Depends: ${misc:Depends},
   iserv-update,
   radvd,
   stsbl-iserv-config-ipv6 (>= 19.10.06),
+Recommends: stsbl-iserv-dns-ula,
 Xb-Private-IServ-Revision: ${iserv:Revision}
 Description: IServ Server Radvd
  Provides radvd configuration to advertise routes to LAN and internet.
