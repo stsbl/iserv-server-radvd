@@ -1,3 +1,12 @@
+stsbl-iserv-server-radvd (23.09.12.1) stable; urgency=medium
+
+  * Renamed locale templates
+  * Updated .gitignore
+  * Added option to deactivate advertising routes on default interfaces
+    (required for Hetzner servers)
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Tue, 12 Sep 2023 01:42:41 +0200
+
 stsbl-iserv-server-radvd (21.08.17.1) stable; urgency=medium
 
   * Switched to git source format
