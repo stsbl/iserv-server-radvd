@@ -6,3 +6,10 @@ default         false
 readonly        true
 group           Module: Radvd server
 
+RadvdAdvertiseOnDefIf:
+name            Adverstise LAN routes on default interface
+description     Select if LAN routes should be advertised on default gateway interface. Normally required when obtaining prefixes dynamically using DHCPv6. Only deactivate when required by your Internet service provider.
+type            bool
+default         true
+readonly        true
+group           Module: Radvd server

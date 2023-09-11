@@ -5,8 +5,8 @@
 # Determine internet interface
 DEFIF="$(. /usr/lib/iserv/ipv6_defif)"
 
-# advert lan routes on all wan interfaces + default interfaces
-[ -z "$DEFIF" ] || (for i in $(netquery6 -i "$DEFIF" -ug nic | sort | uniq)
+# advertise lan routes on all wan interfaces + default interfaces
+! [ "$RadvdAdvertiseOnDefIf" ] || [ -z "$DEFIF" ] || (for i in $(netquery6 -i "$DEFIF" -ug nic | sort | uniq)
 do
   echo "interface $i {"
   echo "  AdvSendAdvert on;"
@@ -15,19 +15,22 @@ do
   echo "  MinRtrAdvInterval 3;"
   echo "  MaxRtrAdvInterval 10;"
   echo
-  # advert all routes from routing table except the one on own interface
-  for h in $(ip -6 route | grep -vE "(^none |dev $i |dev lo |^default|^local|^fe80)" | awk '{ print $1 }')
+
+  ROUTES=($(ip -6 route | grep -vE "(^none |dev $i |dev lo |^default|^local|^fe80)" | awk '{ print $1 }'))
+
+  # advertise all routes from routing table except the one on own interface
+  for h in "${ROUTES[@]}"
   do
     # make advertise to nat64 prefix on lan interface switchable
     if [ "$h" = "64:ff9b::/96" ]
     then
-      [ $AdverstiseNAT64 ] || continue
+      [ "$AdverstiseNAT64" ] || continue
     fi
 
     # append prefix 128 if none given
     # default to /128 prefix
     suffix=""
-    if ! [[ $h =~ /[0-9]{1,3}$ ]]
+    if ! [[ "$h" =~ /[0-9]{1,3}$ ]]
     then
       suffix="/128"
     fi
@@ -44,9 +47,9 @@ done)
 
 IFs=($(netquery6 -gul nic | sort | uniq))
 
-if [[ ${#IFs[@]} -gt 0 ]]
+if [[ "${#IFs[@]}" -gt 0 ]]
 then
-  for i in ${IFs[@]}
+  for i in "${IFs[@]}"
   do
     # do not advert on default interface
     [ "$i" = "$DEFIF" ] && continue

@@ -6,12 +6,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: config/80server-radvd
+msgid "Adverstise LAN routes on default interface"
+msgstr ""
+
+#: config/80server-radvd
 msgid "Adverstise NAT64 address range on default interface"
 msgstr "NAT64 Adressbereich auf Standardschnittstelle ankündigen"
 
 #: config/80server-radvd
 msgid "Module: Radvd server"
 msgstr "Modul: Radvd-Server"
+
+#: config/80server-radvd
+msgid ""
+"Select if LAN routes should be advertised on default gateway interface. "
+"Normally required when obtaining prefixes dynamically using DHCPv6. Only "
+"deactivate when required by your Internet service provider."
+msgstr ""
+"Legen Sie fest, ob LAN-Routen auf der Standard-Gateway-Schnittstelle bekannt "
+"gegeben werden sollen.  Normalerweise erforderlich, wenn Präfixe dynamisch "
+"über DHCPv6 bezogen werden. Deaktivieren Sie dies nur,"
+"wenn dies von Ihrem Internetdienstanbieter verlangt wird."
 
 #: config/80server-radvd
 msgid ""

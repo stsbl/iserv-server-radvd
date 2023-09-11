@@ -13,11 +13,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: config/80server-radvd
+msgid "Adverstise LAN routes on default interface"
+msgstr ""
+
+#: config/80server-radvd
 msgid "Adverstise NAT64 address range on default interface"
 msgstr ""
 
 #: config/80server-radvd
 msgid "Module: Radvd server"
+msgstr ""
+
+#: config/80server-radvd
+msgid ""
+"Select if LAN routes should be advertised on default gateway interface. "
+"Normally required when obtaining prefixes dynamically using DHCPv6. Only "
+"deactivate when required by your Internet service provider."
 msgstr ""
 
 #: config/80server-radvd
