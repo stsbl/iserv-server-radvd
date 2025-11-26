@@ -56,6 +56,9 @@ then
     cat <<EOT
 interface $i {
   AdvSendAdvert on;
+  # Default lifetime must be at least one hour (default value would be
+  # MaxRtrAdvInterval) or Android does not set announced default route
+  AdvDefaultLifetime 3630;
 
   AdvManagedFlag on;
   AdvOtherConfigFlag on;
@@ -76,8 +79,7 @@ EOT
     AdvOnLink on;
     AdvAutonomous on;
     DeprecatePrefix on;
-    # Not supported here
-    #AdvRouterAddr $(
+    AdvRouterAddr $(
       if [ -n "$DEFIF" ]
       then
         echo -n "on"
